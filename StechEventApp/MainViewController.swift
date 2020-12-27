@@ -36,11 +36,12 @@ class MainViewController: UICollectionViewController {
         collectionView.collectionViewLayout = layout()
         
         navigationController?.title = "Event"
-        navigationController?.navigationBar.barTintColor = .systemBlue
+        navigationController?.navigationBar.barTintColor = .careerSelectColor
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.white
         ]
         navigationItem.title = "STECH EVENT"
+        configureLeftBarButton()
     }
     
     func layout() -> UICollectionViewCompositionalLayout {
@@ -61,7 +62,7 @@ class MainViewController: UICollectionViewController {
             section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
             section.interGroupSpacing = 10
             
-            let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(60))
+            let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(75))
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: sectionHeaderSize, elementKind: "header", alignment: .top)
             sectionHeader.pinToVisibleBounds = true
             
@@ -76,6 +77,19 @@ class MainViewController: UICollectionViewController {
         let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: config)
         
         return layout
+    }
+    
+    func configureLeftBarButton() {
+        
+        let profileImageView = UIImageView()
+        profileImageView.setDimensions(width: 40, height: 40)
+        profileImageView.layer.cornerRadius = 40 / 2
+        profileImageView.layer.masksToBounds = true
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.backgroundColor = .red
+        profileImageView.image = #imageLiteral(resourceName: "854F4A80-24D7-4532-B1CE-0846B097E07E")
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -98,12 +112,14 @@ extension MainViewController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath) as! MainViewHeader
+        let header = MainViewHeader()
 //        sectionHeader.delegate = self
         return sectionHeader
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DEBUG: Push item..")
+        let DetailVC = DetailViewController()
+        navigationController?.pushViewController(DetailVC, animated: true)
     }
 }

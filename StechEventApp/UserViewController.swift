@@ -38,8 +38,8 @@ class  UserViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.title = "Event"
-        navigationController?.navigationBar.barTintColor = .systemBlue
+        navigationController?.title = "Member"
+        navigationController?.navigationBar.barTintColor = .careerSelectColor
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.white
         ]

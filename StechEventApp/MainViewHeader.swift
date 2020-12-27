@@ -37,6 +37,12 @@ class MainViewHeader: UICollectionReusableView {
         return imageView
     }()
     
+    private let underlineView: UIView = {
+        let line = UIView()
+        line.backgroundColor = .systemRed
+        return line
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -52,6 +58,9 @@ class MainViewHeader: UICollectionReusableView {
         
         addSubview(infoStack)
         infoStack.anchor(top: topAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 10)
+        
+        addSubview(underlineView)
+        underlineView.anchor(top: infoStack.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 10, paddingLeft: 5, paddingRight: 5, height: 2)
     }
     
     required init?(coder: NSCoder) {
