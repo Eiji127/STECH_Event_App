@@ -23,7 +23,7 @@ class TabController: UITabBarController {
     func configureTabBar() {
         let feed = MainViewController(collectionViewLayout: UICollectionViewFlowLayout())
         let navEvent = templateNavigationController(image: .actions, rootViewController: feed)
-        let user = UserViewController()
+        let user = UserViewController(config: .userSearch)
         let navUser = templateNavigationController(image: .actions, rootViewController: user)
         
         viewControllers = [navEvent, navUser]
